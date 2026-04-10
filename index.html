@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log File Comparator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <span class="logo">🗂️</span>
+    <h1>Log File Comparator</h1>
+    <span class="subtitle">Side-by-side graphic diff viewer</span>
+  </header>
+
+  <main>
+
+    <!-- ── File upload panel ── -->
+    <section class="upload-panel" aria-label="File upload">
+      <div class="file-drop" id="drop-left" role="button" tabindex="0"
+           aria-label="Upload first log file">
+        <input type="file" accept=".log,.txt,.csv,.json,text/*"
+               aria-label="Select first log file" />
+        <div class="drop-icon">📂</div>
+        <div class="drop-label">Drop a log file here or click to browse</div>
+        <div class="file-name"></div>
+      </div>
+
+      <div class="file-drop" id="drop-right" role="button" tabindex="0"
+           aria-label="Upload second log file">
+        <input type="file" accept=".log,.txt,.csv,.json,text/*"
+               aria-label="Select second log file" />
+        <div class="drop-icon">📂</div>
+        <div class="drop-label">Drop a log file here or click to browse</div>
+        <div class="file-name"></div>
+      </div>
+    </section>
+
+    <!-- ── Controls ── -->
+    <section class="controls" aria-label="Comparison controls">
+      <button id="btn-compare" class="btn btn-primary" disabled>
+        ⚡ Compare
+      </button>
+      <button id="btn-clear" class="btn btn-secondary">
+        🗑️ Clear
+      </button>
+
+      <div class="filter-group">
+        <label for="filter-select">Show:</label>
+        <select id="filter-select" aria-label="Filter diff lines">
+          <option value="all">All lines</option>
+          <option value="changed">Changed only</option>
+          <option value="added">Added only</option>
+          <option value="removed">Removed only</option>
+          <option value="same">Identical only</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- ── Stats bar ── -->
+    <div id="stats-bar" class="stats-bar" style="display:none;" aria-live="polite"></div>
+
+    <!-- ── Diff output ── -->
+    <div id="diff-wrapper" class="diff-wrapper" aria-label="Diff results">
+      <div class="empty-state">
+        <div class="big-icon">📋</div>
+        <p>Load two log files above and click <strong>Compare</strong> to see the differences.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
